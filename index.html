@@ -7,14 +7,29 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-
-    </div>
-
+    <ul></ul>
+    <ol></ol>
     <script>
-        var spanEl = document.createElement("span");
-        spanEl.append("삽입된 문자열");
-        document.querySelector("div").append(spanEl);
+        var things = ['냉', '온', '탕'];
+        var steps = [
+            '냉탕',
+            '온탕',
+            '노천탕',
+        ];
+
+        var thingsUl = document.querySelector("ul");
+        for (var i =0; i < things.length; i++){
+            var li = document.createElement('li');
+            li.append(things[i]);
+            thingsUl.append(li);
+        }
+
+        var stepOl = document.querySelector("ol");
+        for(var i = 0; i<steps.length; i++){
+            var li = document.createElement("li");
+            li.append(steps[i]);
+            stepOl.append(li);
+        }
     </script>
 </body>
 </html>
