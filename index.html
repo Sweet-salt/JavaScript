@@ -7,28 +7,14 @@
     <title>Document</title>
 </head>
 <body>
+    <button onclick="insertThisTime()">현 시각 기록</button>
     <ul></ul>
-    <ol></ol>
     <script>
-        var things = ['냉', '온', '탕'];
-        var steps = [
-            '냉탕',
-            '온탕',
-            '노천탕',
-        ];
-
-        var thingsUl = document.querySelector("ul");
-        for (var i =0; i < things.length; i++){
-            var li = document.createElement('li');
-            li.append(things[i]);
-            thingsUl.append(li);
-        }
-
-        var stepOl = document.querySelector("ol");
-        for(var i = 0; i<steps.length; i++){
-            var li = document.createElement("li");
-            li.append(steps[i]);
-            stepOl.append(li);
+        function insertThisTime(){
+            var ulEl = document.querySelector("ul");
+            var liEl = document.createElement("li");
+            liEl.append(new Date());
+            ulEl.append(liEl);
         }
     </script>
 </body>
