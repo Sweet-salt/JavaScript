@@ -44,6 +44,28 @@ function updateMyInfo() {
     });
     my_info.interest = interests;
 }
+
+function showPhotos() {
+    var gallery = document.querySelector("#gallery");
+
+    photos.forEach(function (photo){
+        var photoNode = document.querySelector("article.hidden").cloneNode(true);
+        photoNode.classList.remove("hidden");
+        photoNode.querySelector(".author").innerHTML = photo.innerHTML = photo.user_name;
+
+        photoNode.querySelector(".desc").innerHTML = photo.description;
+        photoNode.querySelector(".like").innerHTML = photo.likes;
+        
+        if(my_info.like.indexOf(photo.idx) > -1 ){
+            photoNode.querySelector(".like").classList.add("on");
+        } 
+        photoNode.querySelector(".photo").style.backgroundImage
+        = "url('./img/phto/" + photo.file_name +"')"
+        gallery.append(photoNode);
+    });
+}
+
 function init() {
     showMyInfo();
+    showPhotos();
 }
