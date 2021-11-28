@@ -27,7 +27,23 @@ function showMyInfo(){
         document.querySelector("#myinfo input[type=checkbox][value=" + interest + "]").checked = true;
     });
 }
+function setEditMyInfo (on){
+    document.querySelector("#myinfo > div").className = on ? 'edit' : 'none edit';
+    document.querySelectorAll("#myinfo input").forEach(function(input){
+        input.disabled = !on;
+    });
+    showMyInfo();
+}
 
+function updateMyInfo() {
+    my_info.introduction = document.querySelector("#ip-intro").value;
+    my_info.as = document.querySelector("#myinfo input[type=radio]:checked").value;
+    var interests = [];
+    document.querySelectorAll("#myinfo input[type=checkbox]:checked").forEach(function (checkbox){
+    interests.push(checkbox.value);
+    });
+    my_info.interest = interests;
+}
 function init() {
     showMyInfo();
 }
