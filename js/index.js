@@ -64,22 +64,26 @@ function showPhotos() {
             photoNode.querySelector(".like").classList.add("on");
         } 
         photoNode.querySelector(".photo").style.backgroundImage
-        = "url('./img/phto/" + photo.file_name +"')"
+        = "url('./img/phto/" + photo.file_name +"')";
+
+        photoNode.querySelector(".like").addEventListener('click', function(){
+            toggleLike();
+        });
         gallery.append(photoNode);
     });
 }
 function toggleLike(idx) {
     if(my_info.like.indexOf(idx) === -1){
         my_info.like.push(idx);
-        for(var i = 0; i < photos; i++){
+        for(var i = 0; i < photos.like; i++){
             if(photos[i].idx === idx){
                 photos[i].likes--;
                 break;
             }
         }
     }else{
-        my_info.like = my_info.filter(function(photo){
-           return photo.idx  !== idx;
+        my_info.like = my_info.like.filter(function(it){
+           return photo.it  !== idx;
         });
         for(var i = 0; i < photos.length; i++){
             if(photos[i].idx === idx){
@@ -88,6 +92,7 @@ function toggleLike(idx) {
             }
         }
     }
+    showPhotos();
 }
 
 function init() {
