@@ -13,6 +13,40 @@ function setDescLength() {
     = document.querySelector("input.description").value.length +"/20";
 }
 
+var sorts = {
+    recent: function(a,b){return (a.idx > b.idx) ? -1 : 1},
+    like: function(a,b){return (a.idx > b.idx) ? -1 : 1}
+};
+var sort = sorts.recent;
+
+var filters = {
+    all: function(it){return true;},
+    mine: function(it){return it.user_id === my_info.id;},
+    like: function(it){return my_info.like.indexOf(it.idx) > -1;},
+    follow: function(it){return my_info.follow.indexOf(it.user_id)}
+}
+var filter = filters.all;
+
+function setSort(_sort){
+    document.querySelectorAll("#sorts li").forEach(function (sortli){
+        sortli.classList.remove("on");
+    });
+    document,querySelector("#sorts li."+ _sort).classList.add("on");
+        
+    sort = sorts[_sort];
+    showPhotos();
+}
+
+function setFilter(_filter){
+    document.querySelectorAll("#filters li").forEach(function (sortli){
+        sortli.classList.remove("on");
+    });
+    document,querySelector("#filters li."+ _filter).classList.add("on");
+
+    filter = filters[_filter];
+    showPhotos();
+}
+
 function showMyInfo(){
     document.querySelector("#myInfoId").innerHTML = my_info["id"];
     document.querySelector("#myInfoUserName").innerHTML = my_info.user_name;
@@ -48,11 +82,13 @@ function updateMyInfo() {
 function showPhotos() {
     var existingNodes = document.querySelectorAll("article:not(.hidden)");
     existingNodes.forEach(function (existingNodes){
-
-    })
+        existingNodes.remove();
+    });
     var gallery = document.querySelector("#gallery");
+    var filtered = photos.filter(filter);
+    filtered.sort(sort);
 
-    photos.forEach(function (photo){
+    filtered.forEach(function (photo){
         var photoNode = document.querySelector("article.hidden").cloneNode(true);
         photoNode.classList.remove("hidden");
         photoNode.querySelector(".author").innerHTML = photo.innerHTML = photo.user_name;
