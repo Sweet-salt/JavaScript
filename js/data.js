@@ -1,4 +1,6 @@
-var my_info = {
+var my_info = null;
+
+var _my_info = {
   id: 'fastcampus',
   user_name: "패캠",
   introduction: "사진 찍는 걸 좋아하는 프로그래머 지망생입니다.",

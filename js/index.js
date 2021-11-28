@@ -77,6 +77,8 @@ function updateMyInfo() {
     interests.push(checkbox.value);
     });
     my_info.interest = interests;
+    setEditMyInfo(false);
+    updateMyInfoDB();
 }
 
 function showPhotos() {
@@ -132,6 +134,32 @@ function toggleLike(idx) {
 }
 
 function init() {
-    showMyInfo();
-    showPhotos();
+    //showMyInfo();
+    //showPhotos();
+    loadMyinfo();
+}
+
+function loadMyinfo(){
+    db.collection("my_info").get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          my_info = doc.data();
+    
+          // 받아온 document의 id
+          my_info.docId = doc.id;
+    
+          showMyInfo();
+        })
+      });
+    
+}
+
+function updateMyInfoDB(){
+    db.collection("my_info").doc(my_info.docId).update({
+        introduction: my_info.introduction,
+        as: my_info.as,
+        interest: my_info.interest
+    }).then(function () {
+        loadMyInfo();
+    })
+
 }
