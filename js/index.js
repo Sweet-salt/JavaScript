@@ -46,6 +46,10 @@ function updateMyInfo() {
 }
 
 function showPhotos() {
+    var existingNodes = document.querySelectorAll("article:not(.hidden)");
+    existingNodes.forEach(function (existingNodes){
+
+    })
     var gallery = document.querySelector("#gallery");
 
     photos.forEach(function (photo){
@@ -63,6 +67,27 @@ function showPhotos() {
         = "url('./img/phto/" + photo.file_name +"')"
         gallery.append(photoNode);
     });
+}
+function toggleLike(idx) {
+    if(my_info.like.indexOf(idx) === -1){
+        my_info.like.push(idx);
+        for(var i = 0; i < photos; i++){
+            if(photos[i].idx === idx){
+                photos[i].likes--;
+                break;
+            }
+        }
+    }else{
+        my_info.like = my_info.filter(function(photo){
+           return photo.idx  !== idx;
+        });
+        for(var i = 0; i < photos.length; i++){
+            if(photos[i].idx === idx){
+                photos[i].likes--;
+                break;
+            }
+        }
+    }
 }
 
 function init() {
