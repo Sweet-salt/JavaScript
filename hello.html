@@ -7,11 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-    안녕하세요.
+    
+    <p>안녕하세요.</p>
     <input type="text" />
-    <button>확인</button>
+    <button  >확인</button>
     <script>
+        var i = document.querySelector('input');
+        var a = document.querySelector('p');
+
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', s);
+        function s(){
+            var name = i.value;
+            a.textContent = name + '님 안녕하세요';
+        }
         
+        console.log(i,a);
     </script>
 </body>
 </html>
