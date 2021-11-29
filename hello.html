@@ -8,18 +8,21 @@
 </head>
 <body>
     
-    <p>안녕하세요.</p>
+    <!-- <p>안녕하세요.</p> -->
     <input type="text" />
     <button  >확인</button>
     <script>
         var i = document.querySelector('input');
         var a = document.querySelector('p');
-
         var btn = document.querySelector('button');
+        var body = document.querySelector('body');
         btn.addEventListener('click', s);
+
         function s(){
+            var pEl = document.createElement('p');
             var name = i.value;
-            a.textContent = name + '님 안녕하세요';
+            pEl.textContent = name + '님 안녕하세요';
+            body.appendChild(pEl);
         }
         
         console.log(i,a);
